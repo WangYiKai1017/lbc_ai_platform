@@ -2,23 +2,24 @@
 .novel-editor-container {
   display: flex;
   height: 100vh;
-  background-color: #1a1a2e;
-  color: #fff;
+  background-color: #f8f9fa;
+  color: #333;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* 左侧导航栏 */
 .sidebar {
   width: 240px;
-  background-color: #16213e;
-  border-right: 1px solid #0f3460;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
   display: flex;
   flex-direction: column;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
 }
 
 .sidebar-header {
   padding: 20px;
-  border-bottom: 1px solid #0f3460;
+  border-bottom: 1px solid #e0e0e0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,16 +28,22 @@
 .sidebar-header h2 {
   margin: 0;
   font-size: 18px;
-  color: #fff;
+  color: #2c3e50;
+  font-weight: 600;
 }
 
 .sidebar-toggle {
   background: none;
   border: none;
-  color: #fff;
+  color: #666;
   font-size: 20px;
   cursor: pointer;
   padding: 5px;
+  transition: color 0.2s;
+}
+
+.sidebar-toggle:hover {
+  color: #3498db;
 }
 
 .sidebar-nav {
@@ -49,17 +56,22 @@
   align-items: center;
   padding: 12px 20px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
   border-left: 3px solid transparent;
+  border-radius: 0 8px 8px 0;
+  margin: 2px 0;
 }
 
 .nav-item:hover {
-  background-color: #0f3460;
+  background-color: #f1f3f5;
+  transform: translateX(4px);
 }
 
 .nav-item.active {
-  background-color: #0f3460;
-  border-left-color: #4facfe;
+  background-color: #e8f4fd;
+  border-left-color: #3498db;
+  color: #3498db;
+  font-weight: 600;
 }
 
 .nav-icon {
@@ -83,12 +95,13 @@
 /* 顶部工具栏 */
 .top-toolbar {
   height: 60px;
-  background-color: #16213e;
-  border-bottom: 1px solid #0f3460;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .toolbar-center {
@@ -100,7 +113,7 @@
 .logo {
   font-size: 24px;
   font-weight: 700;
-  color: #4facfe;
+  color: #3498db;
   text-align: center;
   margin: 0;
 }
@@ -112,6 +125,7 @@
   overflow: hidden;
   padding: 0;
   gap: 0;
+  background-color: #f8f9fa;
 }
 
 /* 角色管理页面容器 */
@@ -124,8 +138,9 @@
 .edit-area {
   flex: 2;
   overflow: hidden;
-  background-color: #16213e;
-  border-right: 1px solid #0f3460;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.02);
 }
 
 /* 章节编辑器 */
@@ -138,37 +153,43 @@
 
 .chapter-header {
   padding: 20px 30px;
-  border-bottom: 1px solid #0f3460;
-  background-color: rgba(15, 52, 96, 0.5);
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #f8f9fa;
 }
 
 .chapter-number-display {
   font-size: 24px;
   font-weight: 700;
-  color: #4facfe;
+  color: #3498db;
   margin-bottom: 5px;
   outline: none;
-  transition: background-color 0.2s;
-  padding: 2px 5px;
-  border-radius: 3px;
+  transition: all 0.2s;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 2px solid transparent;
 }
 
 .chapter-number-display:focus {
-  background-color: rgba(79, 172, 254, 0.2);
+  background-color: #ffffff;
+  border-color: #3498db;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
 }
 
 .chapter-title-display {
   font-size: 18px;
   font-weight: 500;
-  color: #e0e0e0;
+  color: #2c3e50;
   outline: none;
-  transition: background-color 0.2s;
-  padding: 2px 5px;
-  border-radius: 3px;
+  transition: all 0.2s;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 2px solid transparent;
 }
 
 .chapter-title-display:focus {
-  background-color: rgba(79, 172, 254, 0.2);
+  background-color: #ffffff;
+  border-color: #3498db;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
 }
 
 .chapter-content-editor {
@@ -177,7 +198,7 @@
   overflow-y: auto;
   font-size: 16px;
   line-height: 1.8;
-  color: #e0e0e0;
+  color: #333;
   background-color: transparent;
   border: none;
   resize: none;
@@ -189,7 +210,7 @@
 }
 
 .chapter-content-editor::placeholder {
-  color: #666;
+  color: #999;
 }
 
 /* 右侧面板 */
@@ -198,14 +219,16 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.02);
 }
 
 .panel-section {
-  background-color: #16213e;
+  background-color: #ffffff;
   flex: 1;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #0f3460;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .outline-section {
@@ -220,9 +243,10 @@
   margin: 0;
   padding: 20px;
   font-size: 18px;
-  color: #fff;
-  border-bottom: 1px solid #0f3460;
-  background-color: rgba(15, 52, 96, 0.5);
+  color: #2c3e50;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #f8f9fa;
+  font-weight: 600;
 }
 
 .panel-content {
@@ -236,42 +260,51 @@
 
 /* 大纲和AI内容样式 */
 .outline-content {
-  background-color: rgba(15, 52, 96, 0.3);
+  background-color: #fafafa;
 }
 
 .outline-preview {
   flex: 1;
-  background-color: rgba(15, 52, 96, 0.5);
-  padding: 15px;
-  border-radius: 4px;
-  border: 1px solid rgba(79, 172, 254, 0.2);
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
 .ai-content {
-  background-color: rgba(15, 52, 96, 0.3);
+  background-color: #fafafa;
 }
 
 .generate-button {
   margin-top: auto;
   padding: 12px 24px;
-  background-color: #4facfe;
+  background-color: #3498db;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
   align-self: center;
   width: 80%;
+  box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
 }
 
 .generate-button:hover {
-  background-color: #00f2fe;
+  background-color: #2980b9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.generate-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
 }
 
 .panel-content p {
   margin: 0;
   font-size: 14px;
   line-height: 1.6;
-  color: #e0e0e0;
+  color: #666;
 }

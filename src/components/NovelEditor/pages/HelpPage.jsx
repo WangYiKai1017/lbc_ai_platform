@@ -3,8 +3,8 @@ import React from 'react';
 const HelpPage = () => {
   return (
     <div className="page-content">
-      <h2>章节帮助页面</h2>
-      <p>章节帮助功能开发中...</p>
+      <h2>page4</h2>
+      <p>页面内容待开发...</p>
     </div>
   );
 };

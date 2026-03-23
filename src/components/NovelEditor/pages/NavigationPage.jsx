@@ -3,8 +3,8 @@ import React from 'react';
 const NavigationPage = () => {
   return (
     <div className="page-content">
-      <h2>章节导航页面</h2>
-      <p>章节导航功能开发中...</p>
+      <h2>page2</h2>
+      <p>页面内容待开发...</p>
     </div>
   );
 };

@@ -21,7 +21,7 @@ function NovelEditor({ page = 'editor' }) {
       {/* 左侧导航栏 */}
       <div className="sidebar">
         <div className="sidebar-header">
-          <h2>小说编辑图</h2>
+          <h2>Menu</h2>
           <button className="sidebar-toggle">≡</button>
         </div>
         <nav className="sidebar-nav">
@@ -30,42 +30,42 @@ function NovelEditor({ page = 'editor' }) {
             onClick={() => handleNavClick('editor')}
           >
             <span className="nav-icon">📄</span>
-            <span className="nav-text">章节编辑</span>
+            <span className="nav-text">page1</span>
           </div>
           <div 
             className={`nav-item ${currentPage === 'characters' ? 'active' : ''}`}
             onClick={() => handleNavClick('characters')}
           >
             <span className="nav-icon">👤</span>
-            <span className="nav-text">角色管理</span>
+            <span className="nav-text">subpage1</span>
           </div>
           <div 
             className={`nav-item ${currentPage === 'navigation' ? 'active' : ''}`}
             onClick={() => handleNavClick('navigation')}
           >
             <span className="nav-icon">🔍</span>
-            <span className="nav-text">章节导航</span>
+            <span className="nav-text">page2</span>
           </div>
           <div 
             className={`nav-item ${currentPage === 'details' ? 'active' : ''}`}
             onClick={() => handleNavClick('details')}
           >
             <span className="nav-icon">📝</span>
-            <span className="nav-text">章节细节</span>
+            <span className="nav-text">page3</span>
           </div>
           <div 
             className={`nav-item ${currentPage === 'help' ? 'active' : ''}`}
             onClick={() => handleNavClick('help')}
           >
             <span className="nav-icon">❓</span>
-            <span className="nav-text">章节帮助</span>
+            <span className="nav-text">page4</span>
           </div>
           <div 
             className={`nav-item ${currentPage === 'innovation' ? 'active' : ''}`}
             onClick={() => handleNavClick('innovation')}
           >
             <span className="nav-icon">💡</span>
-            <span className="nav-text">章节创新</span>
+            <span className="nav-text">page5</span>
           </div>
         </nav>
       </div>
@@ -75,7 +75,7 @@ function NovelEditor({ page = 'editor' }) {
         {/* 顶部工具栏 */}
         <header className="top-toolbar">
           <div className="toolbar-center">
-            <div className="logo">📝 小说编辑</div>
+            <div className="logo">📝 App</div>
           </div>
         </header>
 

@@ -3,8 +3,8 @@ import React from 'react';
 const DetailsPage = () => {
   return (
     <div className="page-content">
-      <h2>章节细节页面</h2>
-      <p>章节细节功能开发中...</p>
+      <h2>page3</h2>
+      <p>页面内容待开发...</p>
     </div>
   );
 };
