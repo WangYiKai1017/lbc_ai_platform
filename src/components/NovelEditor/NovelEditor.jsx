@@ -132,7 +132,7 @@ function NovelEditor({ page = 'editor' }) {
                   <h3>AI剧情建议</h3>
                   <div className="panel-content ai-content">
                     <p>AI通过分析大纲给出的剧情建议，帮助您更好地发展故事...</p>
-                    <button type="button" className="panel-button generate-button">生成剧情</button>
+                    <button type="button" className="panel-button generate-button"><span>生成剧情</span></button>
                   </div>
                 </div>
               </div>
