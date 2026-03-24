@@ -2,7 +2,7 @@ import React from 'react';
 import './RequirementsLayer.css';
 import StoryCard from './StoryCard';
 
-const Lane = ({ title, cards, onCardClick, showAssignee = true, onDragStart, onDragOver, onDragEnd, draggedCardId, dragOverCardId }) => {
+const Lane = ({ title, cards, onCardClick, showAssignee = true, showWorkStatus = false, onDragStart, onDragOver, onDragEnd, draggedCardId, dragOverCardId }) => {
   return (
     <div className="lane">
       <div className="lane-header">
@@ -16,6 +16,7 @@ const Lane = ({ title, cards, onCardClick, showAssignee = true, onDragStart, onD
             card={card}
             onClick={onCardClick}
             showAssignee={showAssignee}
+            showWorkStatus={showWorkStatus}
             onDragStart={onDragStart}
             onDragOver={onDragOver}
             onDragEnd={onDragEnd}

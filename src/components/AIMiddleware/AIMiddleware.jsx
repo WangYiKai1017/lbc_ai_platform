@@ -3,14 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import './AIMiddleware.css';
 import UserManagement from '../UserManagement/UserManagement';
 import RequirementsLayer from '../RequirementsLayer/RequirementsLayer';
+import KanbanLayer from '../KanbanLayer/KanbanLayer';
 
 function AIMiddleware({ page = 'requirements' }) {
   const currentPage = page;
   const navigate = useNavigate();
+  const [expandedMenu, setExpandedMenu] = useState(null);
 
   const handleNavClick = (page) => {
     const path = page === 'editor' ? '/editor' : `/${page}`;
     navigate(path);
+  };
+
+  const toggleSubMenu = (menuName) => {
+    setExpandedMenu(expandedMenu === menuName ? null : menuName);
+  };
+
+  const isSubMenuActive = (parent, child) => {
+    return currentPage === child;
   };
 
   return (
@@ -18,7 +28,7 @@ function AIMiddleware({ page = 'requirements' }) {
       {/* 左侧导航栏 */}
       <div className="sidebar">
         <div className="sidebar-header">
-          <h2>Menu</h2>
+          <h2>工具栏</h2>
           <button className="sidebar-toggle">≡</button>
         </div>
         <nav className="sidebar-nav">
@@ -50,13 +60,44 @@ function AIMiddleware({ page = 'requirements' }) {
             <span className="nav-icon">🤖</span>
             <span className="nav-text">agent层</span>
           </div>
+          
+          {/* agent能力层 - 带子菜单 */}
           <div 
-            className={`nav-item ${currentPage === 'agent-capabilities' ? 'active' : ''}`}
-            onClick={() => handleNavClick('agent-capabilities')}
+            className={`nav-item ${currentPage.includes('agent-capabilities') ? 'active' : ''}`}
+            onClick={() => toggleSubMenu('agent-capabilities')}
           >
             <span className="nav-icon">⚙️</span>
             <span className="nav-text">agent能力层</span>
+            <span className={`submenu-toggle ${expandedMenu === 'agent-capabilities' ? 'expanded' : ''}`}>
+              {expandedMenu === 'agent-capabilities' ? '▼' : '▶'}
+            </span>
           </div>
+          
+          {/* agent能力层子菜单 */}
+          <div className={`submenu ${expandedMenu === 'agent-capabilities' ? 'expanded' : ''}`}>
+            <div 
+              className={`submenu-item ${isSubMenuActive('agent-capabilities', 'mcp-management') ? 'active' : ''}`}
+              onClick={() => handleNavClick('mcp-management')}
+            >
+              <span className="submenu-icon">🔧</span>
+              <span className="submenu-text">MCP管理</span>
+            </div>
+            <div 
+              className={`submenu-item ${isSubMenuActive('agent-capabilities', 'skill-management') ? 'active' : ''}`}
+              onClick={() => handleNavClick('skill-management')}
+            >
+              <span className="submenu-icon">🧩</span>
+              <span className="submenu-text">skill管理</span>
+            </div>
+            <div 
+              className={`submenu-item ${isSubMenuActive('agent-capabilities', 'rag-management') ? 'active' : ''}`}
+              onClick={() => handleNavClick('rag-management')}
+            >
+              <span className="submenu-icon">📚</span>
+              <span className="submenu-text">RAG管理</span>
+            </div>
+          </div>
+          
           <div 
             className={`nav-item ${currentPage === 'models' ? 'active' : ''}`}
             onClick={() => handleNavClick('models')}
@@ -79,7 +120,7 @@ function AIMiddleware({ page = 'requirements' }) {
         {/* 顶部工具栏 */}
         <header className="top-toolbar">
           <div className="toolbar-center">
-            <div className="logo">📝 App</div>
+            <div className="logo">🧠 LMBTCOS-AI中台</div>
           </div>
         </header>
 
@@ -87,9 +128,16 @@ function AIMiddleware({ page = 'requirements' }) {
         <div className="content-area">
           {currentPage === 'requirements' ? (
             <RequirementsLayer />
+          ) : currentPage === 'kanban' ? (
+            <KanbanLayer />
           ) : (
             <div className="page-content">
-              <h1>{currentPage}</h1>
+              <h1>
+                {currentPage === 'mcp-management' ? 'MCP管理' :
+                 currentPage === 'skill-management' ? 'skill管理' :
+                 currentPage === 'rag-management' ? 'RAG管理' :
+                 currentPage}
+              </h1>
               <p>页面内容待开发...</p>
             </div>
           )}

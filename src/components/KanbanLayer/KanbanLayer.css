@@ -1,0 +1,192 @@
+/* 看板开发层主容器 */
+.kanban-layer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: var(--bg-secondary);
+  padding: var(--spacing-md);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* 看板头部 */
+.kanban-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md) 0;
+  margin-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.kanban-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.kanban-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.kanban-info span {
+  padding: 6px 12px;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* 看板内容区域 */
+.kanban-content {
+  flex: 1;
+  display: flex;
+  gap: var(--spacing-md);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-md);
+  align-items: flex-start;
+}
+
+/* 泳道包装器 */
+.lane-wrapper {
+  flex: 1;
+  min-width: 300px;
+  max-width: 320px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  transition: all 0.3s ease;
+  padding: 2px;
+}
+
+/* 泳道拖动状态 */
+.lane-wrapper.drag-over {
+  background-color: rgba(52, 152, 219, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 2px;
+}
+
+/* 泳道样式覆盖 */
+.lane-wrapper .lane {
+  background-color: transparent;
+  flex: 1;
+  border: none;
+  box-shadow: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.lane-wrapper .lane-header {
+  padding: var(--spacing-md);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.lane-wrapper .lane-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.lane-wrapper .lane-count {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.lane-wrapper .lane-content {
+  flex: 1;
+  background-color: var(--bg-primary);
+  padding: var(--spacing-md);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  gap: var(--spacing-md);
+  overflow-y: auto;
+  box-shadow: var(--shadow-md);
+  min-height: 200px;
+}
+
+/* 每个泳道的颜色区分 */
+.lane-wrapper:nth-child(1) .lane-header {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.lane-wrapper:nth-child(2) .lane-header {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.lane-wrapper:nth-child(3) .lane-header {
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+.lane-wrapper:nth-child(4) .lane-header {
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+.lane-wrapper:nth-child(5) .lane-header {
+  background: linear-gradient(135deg, #27ae60, #229954);
+}
+
+/* 空泳道提示 */
+.lane-content:empty::after {
+  content: '暂无卡片';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  color: var(--text-tertiary);
+  font-style: italic;
+  background-color: var(--bg-tertiary);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-md) 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .lane-wrapper {
+    min-width: 280px;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .lane-wrapper {
+    min-width: 240px;
+    max-width: 260px;
+  }
+}
+
+/* 滚动条样式 */
+.kanban-content::-webkit-scrollbar {
+  height: 8px;
+}
+
+.kanban-content::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+.kanban-content::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.kanban-content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}

@@ -151,25 +151,32 @@ const RequirementsLayer = () => {
 
   return (
     <div className="requirements-layer">
-      {/* 中间对话区域 */}
-      <div className="conversation-area">
-        <div className="conversation-header">
-          <h2>需求拆解助手</h2>
+      {/* 左侧内容区域 */}
+      <div className="left-content">
+        {/* 对话展示区域 */}
+        <div className="conversation-area">
+          <div className="conversation-header">
+            <h2>需求拆解助手</h2>
+          </div>
+          <div className="conversation-messages">
+            {messages.map(message => (
+              <MessageBubble key={message.id} message={message} />
+            ))}
+          </div>
         </div>
-        <div className="conversation-messages">
-          {messages.map(message => (
-            <MessageBubble key={message.id} message={message} />
-          ))}
-        </div>
-        <div className="conversation-input">
-          <input
-            type="text"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            placeholder="请输入您的需求..."
-            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-          />
-          <button onClick={handleSendMessage}>发送</button>
+
+        {/* 输入区域 */}
+        <div className="input-area">
+          <div className="conversation-input">
+            <input
+              type="text"
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
+              placeholder="请输入您的需求..."
+              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+            />
+            <button onClick={handleSendMessage}>发送</button>
+          </div>
         </div>
       </div>
 

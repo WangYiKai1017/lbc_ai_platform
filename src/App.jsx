@@ -14,6 +14,9 @@ function App() {
           <Route path="/workflow" element={<AIMiddleware page="workflow" />} />
           <Route path="/agent" element={<AIMiddleware page="agent" />} />
           <Route path="/agent-capabilities" element={<AIMiddleware page="agent-capabilities" />} />
+          <Route path="/mcp-management" element={<AIMiddleware page="mcp-management" />} />
+          <Route path="/skill-management" element={<AIMiddleware page="skill-management" />} />
+          <Route path="/rag-management" element={<AIMiddleware page="rag-management" />} />
           <Route path="/models" element={<AIMiddleware page="models" />} />
           <Route path="/data" element={<AIMiddleware page="data" />} />
         </Routes>
