@@ -19,6 +19,8 @@ function App() {
           <Route path="/rag-management" element={<AIMiddleware page="rag-management" />} />
           <Route path="/models" element={<AIMiddleware page="models" />} />
           <Route path="/data" element={<AIMiddleware page="data" />} />
+          <Route path="/documents" element={<AIMiddleware page="documents" />} />
+          <Route path="/slice-tool" element={<AIMiddleware page="slice-tool" />} />
         </Routes>
       </Router>
     </div>

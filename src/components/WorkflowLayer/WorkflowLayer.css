@@ -1,0 +1,172 @@
+/* 工作编排层样式 */
+.workflow-layer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.workflow-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg);
+  background-color: white;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.workflow-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.workflow-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.progress-indicator {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.workflow-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.canvas-container {
+  flex: 1;
+  background-color: var(--bg-secondary);
+  overflow: hidden;
+  position: relative;
+  cursor: default;
+}
+
+.workflow-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* 节点样式 */
+.node-group {
+  cursor: move;
+  transition: transform 0.1s ease;
+}
+
+.node-group:hover {
+  transform: scale(1.02);
+}
+
+.workflow-story-card {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.node-group:hover .workflow-story-card {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* 确保StoryCard在foreignObject中正确显示 */
+.workflow-story-card > div {
+  width: 100%;
+  height: 100%;
+}
+
+/* 为卡片添加状态边框 - 与图例颜色一致，添加圆角 */
+.workflow-story-card[data-status="待处理"] {
+  border: 4px solid #95a5a6;
+  border-radius: 8px;
+  overflow: visible;
+}
+
+.workflow-story-card[data-status="进行中"] {
+  border: 4px solid #3498db;
+  border-radius: 8px;
+  overflow: visible;
+}
+
+.workflow-story-card[data-status="待测试"] {
+  border: 4px solid #f39c12;
+  border-radius: 8px;
+  overflow: visible;
+}
+
+.workflow-story-card[data-status="测试中"] {
+  border: 4px solid #e67e22;
+  border-radius: 8px;
+  overflow: visible;
+}
+
+.workflow-story-card[data-status="待部署"] {
+  border: 4px solid #9b59b6;
+  border-radius: 8px;
+  overflow: visible;
+}
+
+.workflow-story-card[data-status="已完成"] {
+  border: 4px solid #2ecc71;
+  border-radius: 8px;
+  overflow: visible;
+}
+
+/* 图例样式 */
+.legend {
+  width: 200px;
+  background-color: white;
+  padding: var(--spacing-md);
+  border-left: 1px solid var(--border-color);
+  box-shadow: -2px 0 4px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+}
+
+.legend h3 {
+  margin: 0 0 var(--spacing-md) 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  font-size: 14px;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .legend {
+    width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .workflow-content {
+    flex-direction: column;
+  }
+  
+  .legend {
+    width: 100%;
+    height: 150px;
+    border-left: none;
+    border-top: 1px solid var(--border-color);
+  }
+}

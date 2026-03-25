@@ -265,6 +265,9 @@
   position: relative;
   overflow: hidden;
   background-clip: padding-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 150px;
 }
 
 .story-card::before {
@@ -347,10 +350,28 @@
   line-height: 1.5;
 }
 
+.story-card-content {
+  flex: 1;
+}
+
+.story-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-xs);
+  border-top: 1px dashed var(--border-color);
+}
+
 .story-card-assignee {
-  position: absolute;
-  bottom: var(--spacing-sm);
-  right: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.assignee-name {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 500;
 }
 
 .assignee-avatar {
@@ -724,6 +745,34 @@
   gap: var(--spacing-sm);
   font-size: 14px;
   color: var(--text-secondary);
+}
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  margin: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 4px;
+  border: 2px solid var(--bg-secondary);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+  transform: scale(1.1);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--bg-secondary);
 }
 
 .info-avatar {

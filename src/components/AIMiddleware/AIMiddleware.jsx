@@ -4,6 +4,15 @@ import './AIMiddleware.css';
 import UserManagement from '../UserManagement/UserManagement';
 import RequirementsLayer from '../RequirementsLayer/RequirementsLayer';
 import KanbanLayer from '../KanbanLayer/KanbanLayer';
+import WorkflowLayer from '../WorkflowLayer/WorkflowLayer';
+import AgentLayer from '../AgentLayer/AgentLayer';
+import MCPManagement from './MCPManagement/MCPManagement';
+import SkillManagement from './SkillManagement/SkillManagement';
+import RAGManagement from './RAGManagement/RAGManagement';
+import ModelManagement from './ModelManagement/ModelManagement';
+import DataManagement from './DataManagement/DataManagement';
+import DocumentManagement from './DocumentManagement/DocumentManagement';
+import SliceTool from './SliceTool/SliceTool';
 
 function AIMiddleware({ page = 'requirements' }) {
   const currentPage = page;
@@ -87,7 +96,7 @@ function AIMiddleware({ page = 'requirements' }) {
               onClick={() => handleNavClick('skill-management')}
             >
               <span className="submenu-icon">🧩</span>
-              <span className="submenu-text">skill管理</span>
+              <span className="submenu-text">Skills管理</span>
             </div>
             <div 
               className={`submenu-item ${isSubMenuActive('agent-capabilities', 'rag-management') ? 'active' : ''}`}
@@ -96,6 +105,21 @@ function AIMiddleware({ page = 'requirements' }) {
               <span className="submenu-icon">📚</span>
               <span className="submenu-text">RAG管理</span>
             </div>
+            <div 
+              className={`submenu-item ${isSubMenuActive('agent-capabilities', 'slice-tool') ? 'active' : ''}`}
+              onClick={() => handleNavClick('slice-tool')}
+            >
+              <span className="submenu-icon">✂️</span>
+              <span className="submenu-text">切片工具</span>
+            </div>
+          </div>
+          
+          <div 
+            className={`nav-item ${currentPage === 'documents' ? 'active' : ''}`}
+            onClick={() => handleNavClick('documents')}
+          >
+            <span className="nav-icon">📁</span>
+            <span className="nav-text">文档管理</span>
           </div>
           
           <div 
@@ -130,14 +154,27 @@ function AIMiddleware({ page = 'requirements' }) {
             <RequirementsLayer />
           ) : currentPage === 'kanban' ? (
             <KanbanLayer />
+          ) : currentPage === 'workflow' ? (
+            <WorkflowLayer />
+          ) : currentPage === 'agent' ? (
+            <AgentLayer />
+          ) : currentPage === 'mcp-management' ? (
+            <MCPManagement />
+          ) : currentPage === 'skill-management' ? (
+            <SkillManagement />
+          ) : currentPage === 'rag-management' ? (
+            <RAGManagement />
+          ) : currentPage === 'slice-tool' ? (
+            <SliceTool />
+          ) : currentPage === 'documents' ? (
+            <DocumentManagement />
+          ) : currentPage === 'models' ? (
+            <ModelManagement />
+          ) : currentPage === 'data' ? (
+            <DataManagement />
           ) : (
             <div className="page-content">
-              <h1>
-                {currentPage === 'mcp-management' ? 'MCP管理' :
-                 currentPage === 'skill-management' ? 'skill管理' :
-                 currentPage === 'rag-management' ? 'RAG管理' :
-                 currentPage}
-              </h1>
+              <h1>{currentPage}</h1>
               <p>页面内容待开发...</p>
             </div>
           )}
