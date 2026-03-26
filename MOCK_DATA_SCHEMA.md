@@ -183,34 +183,140 @@
 
 ---
 
-## 8. 页面组件结构
+## 7. 看板页面 (KanbanLayer)
 
+### 泳道 (Swimlane)
+```json
+{
+  "id": "string",           // 泳道唯一标识符
+  "title": "string",        // 泳道标题
+  "cards": [{...}]          // 泳道中的故事卡列表
+}
 ```
-src/components/AIMiddleware/
-├── DocumentManagement/
-│   ├── DocumentManagement.jsx
-│   └── DocumentManagement.css
-├── SliceTool/
-│   ├── SliceTool.jsx
-│   └── SliceTool.css
-├── ModelManagement/
-│   ├── ModelManagement.jsx
-│   └── ModelManagement.css
-├── DataManagement/
-│   ├── DataManagement.jsx
-│   └── DataManagement.css
-├── MCPManagement/
-│   ├── MCPManagement.jsx
-│   └── MCPManagement.css
-├── SkillManagement/
-│   ├── SkillManagement.jsx
-│   └── SkillManagement.css
-└── AIMiddleware.jsx
+
+### 故事卡 (StoryCard)
+```json
+{
+  "id": "string",           // 故事卡唯一标识符
+  "title": "string",        // 故事卡标题
+  "summary": "string",      // 故事卡摘要
+  "description": "string",  // 故事卡详细描述
+  "status": "string",       // 状态: 待处理, 进行中, 测试中, 待测试, 已完成
+  "assignee": {
+    "id": "string",         // 执行者ID
+    "name": "string",       // 执行者名称
+    "avatar": "string"      // 执行者头像emoji
+  },
+  "reporter": {
+    "id": "string",         // 报告者ID
+    "name": "string",       // 报告者名称
+    "avatar": "string"      // 报告者头像emoji
+  },
+  "tags": ["string"],       // 标签列表
+  "reportDate": "string",   // 报告日期 (YYYY-MM-DD格式)
+  "dueDate": "string",      // 截止日期 (YYYY-MM-DD格式)
+  "estimatedTime": "string",// 估计时间 (如 "10d", "2w")
+  "actualTime": "string",   // 实际时间 (如 "8d", "1.5w")
+  "tokenUsage": "string",   // Token使用量
+  "priority": "string",     // 优先级: 低, 中, 高, 紧急
+  "parentDependencies": ["string"], // 父依赖卡片ID列表
+  "childDependencies": ["string"],  // 子依赖卡片ID列表
+  "checklist": [             // 检查清单
+    {
+      "text": "string",     // 检查项文本
+      "completed": "boolean"// 是否完成
+    }
+  ]
+}
 ```
 
 ---
 
-## 9. 状态管理
+## 8. 需求拆解页面 (RequirementsLayer)
+
+### 对话消息 (Message)
+```json
+{
+  "id": "number",           // 消息唯一标识符
+  "text": "string",         // 消息内容 (支持Markdown格式)
+  "isUser": "boolean"       // 是否为用户消息
+}
+```
+
+### 故事卡 (StoryCard)
+- 与看板页面的故事卡结构相同
+
+---
+
+## 9. 工作流页面 (WorkflowLayer)
+
+### 节点 (Node)
+```json
+{
+  "id": "string",           // 节点唯一标识符
+  "title": "string",        // 节点标题
+  "summary": "string",      // 节点摘要
+  "status": "string",       // 状态: 待处理, 进行中, 测试中, 待测试, 已完成
+  "parentDependencies": ["string"], // 父依赖节点ID列表
+  "childDependencies": ["string"],  // 子依赖节点ID列表
+  "x": "number",            // 节点在画布上的X坐标
+  "y": "number"             // 节点在画布上的Y坐标
+}
+```
+
+### 边 (Edge)
+```json
+{
+  "id": "string",           // 边唯一标识符
+  "source": "string",       // 源节点ID
+  "target": "string"        // 目标节点ID
+}
+```
+
+---
+
+## 10. 页面组件结构
+
+```
+src/components/
+├── AIMiddleware/
+│   ├── DocumentManagement/
+│   │   ├── DocumentManagement.jsx
+│   │   └── DocumentManagement.css
+│   ├── SliceTool/
+│   │   ├── SliceTool.jsx
+│   │   └── SliceTool.css
+│   ├── ModelManagement/
+│   │   ├── ModelManagement.jsx
+│   │   └── ModelManagement.css
+│   ├── DataManagement/
+│   │   ├── DataManagement.jsx
+│   │   └── DataManagement.css
+│   ├── MCPManagement/
+│   │   ├── MCPManagement.jsx
+│   │   └── MCPManagement.css
+│   ├── SkillManagement/
+│   │   ├── SkillManagement.jsx
+│   │   └── SkillManagement.css
+│   └── AIMiddleware.jsx
+├── KanbanLayer/
+│   ├── KanbanLayer.jsx
+│   └── KanbanLayer.css
+├── RequirementsLayer/
+│   ├── RequirementsLayer.jsx
+│   ├── RequirementsLayer.css
+│   ├── Lane.jsx
+│   ├── StoryCard.jsx
+│   ├── StoryCardDetail.jsx
+│   └── MessageBubble.jsx
+└── WorkflowLayer/
+    ├── WorkflowLayer.jsx
+    └── WorkflowLayer.css
+```
+
+---
+
+## 11. 状态管理
 
 所有页面组件使用React的useState钩子进行本地状态管理，主要状态包括：
 - 数据列表（如文件列表、模型列表等）
@@ -220,7 +326,7 @@ src/components/AIMiddleware/
 
 ---
 
-## 10. 交互模式
+## 12. 交互模式
 
 ### 列表+详情模式
 所有管理页面（模型、数据、MCP、技能）都采用列表+详情的交互模式：
@@ -244,7 +350,7 @@ src/components/AIMiddleware/
 
 ---
 
-## 11. 数据格式规范
+## 13. 数据格式规范
 
 ### 日期时间格式
 - 日期: YYYY-MM-DD (如 "2026-03-25")
@@ -262,7 +368,7 @@ src/components/AIMiddleware/
 
 ---
 
-## 12. 未来扩展建议
+## 14. 未来扩展建议
 
 1. **数据持久化**：使用API替代本地mock数据
 2. **状态管理**：引入Redux或Context API进行全局状态管理
